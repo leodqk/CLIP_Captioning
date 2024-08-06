@@ -3,7 +3,7 @@ from flask_cors import CORS
 import os
 import logging
 import cv2
-import get_caption
+import get_caption_VIT32
 import time
 from threading import Thread, Event
 from queue import Queue
@@ -64,7 +64,7 @@ def extract_key_frames(video_path, output_folder, session_id):
                 
             key_frame_path = f"{output_folder}/key_frame_{key_frame_number}.jpg"
             cv2.imwrite(key_frame_path, frame)
-            caption = get_caption.generate_caption(key_frame_path)
+            caption = get_caption_VIT32.generate_caption(key_frame_path)
             with application.app_context():
                 sessions[session_id]["captions"].put(caption)
             logger.info(f"Generated caption for session {session_id}: {caption}") 

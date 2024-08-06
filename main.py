@@ -1,6 +1,7 @@
 import cv2
 import os
-import get_caption
+import get_caption_VIT32
+import get_caption_RN50
 
 def extract_key_frames(video_path, output_folder, delay_seconds):
     # Mở video bằng OpenCV
@@ -35,7 +36,8 @@ def extract_key_frames(video_path, output_folder, delay_seconds):
             cv2.imwrite(key_frame_path, frame)
             print(f"Đã trích xuất: {key_frame_path}")
 
-            print(get_caption.generate_caption(key_frame_path))
+            print(get_caption_VIT32.generate_caption(key_frame_path))
+            print(get_caption_RN50.get_single_caption(key_frame_path))
             key_frame_number += 1
         
         frame_number += 1
